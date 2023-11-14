@@ -1,27 +1,38 @@
 package com.myprojects.demo;
 
-import java.util.Date;
+import java.sql.Date;
 
+
+import jakarta.persistence.*;
+
+
+@Entity
+@Table(name = "books")
 class Book {
-
-	private int id;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Integer id;
     private String title;
     private String author;
     private String ISBN;
     private Date publishedDate;
-    private int user_id;
+    
+    @ManyToOne
+    @JoinColumn(name = "user")
+    private User user;
 
     //constructors
     public Book() {
     }
 
-    public Book(int id, String title, String author, String ISBN, Date publishedDate, int user_id) {
+    public Book(int id, String title, String author, String ISBN, Date publishedDate, User user) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
         this.publishedDate = publishedDate;
-        this.user_id = user_id;
+        this.user = user;
     }
 
     // Getters and Setters
@@ -65,12 +76,12 @@ class Book {
         this.publishedDate = publishedDate;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUser() {
+        return user.getId();
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 	
 }

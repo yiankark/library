@@ -1,10 +1,24 @@
 package com.myprojects.demo;
 
-class User {
 
-	private int id;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "users")
+class User {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Integer id;
+	
+	@Column(name = "username")
     private String username;
+	
+	@Column(name = "password")
     private String password;
+	
+	@Column(name = "email")
     private String email;
 
     // Constructors 

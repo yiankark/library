@@ -1,0 +1,77 @@
+CREATE TABLE books (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    ISBN VARCHAR(13) NOT NULL,
+    publishedDate DATE,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL
+);
+
+
+curl -X POST -H "Content-Type: application/json" -d '{
+  "username": "john",
+  "password": "12345",
+  "email": "john@example.com"
+}' http://localhost:8080/api/users/register
+
+
+
+
+
+given these two tables existing in a mysql database:
+
+CREATE TABLE books (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    ISBN VARCHAR(13) NOT NULL,
+    publishedDate DATE,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL
+);
+
+make a spring boot application with the following .java files
+
+
+Book.java
+BookController.java
+User.java
+UserController.java
+BookRepository.java
+UserRepository.java
+
+the BookController
+and the UserController 
+will implement a rest api
+with the following end points:
+
+for user registrations and login
+	/api/register (POST)
+	/api/login (POST)
+	
+for crud operations with books
+
+/api/books (GET, POST) (dealing with many books)
+
+/api/books/{id} (GET, PUT, DELETE) (dealing with one book)
+	
+	
+
+
+
+
