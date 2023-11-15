@@ -1,6 +1,9 @@
 package com.myprojects.demo;
 
 
+import java.io.Serializable;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -20,24 +23,26 @@ class User {
 	
 	@Column(name = "email")
     private String email;
+	
+	@OneToMany(mappedBy = "user")
+    private List<Book> books;
 
     // Constructors 
     public User() {
     }
 
-    public User(int id, String username, String password, String email) {
-        this.id = id;
+    public User(String username, String password, String email, List<Book> books) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.books = books;
     }
 
-    // Getters and Setters
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -65,5 +70,12 @@ class User {
         this.email = email;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
 }
 
